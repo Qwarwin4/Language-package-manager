@@ -1,0 +1,15 @@
+{
+  "mapping": {
+    "numpy":  { "pip": "numpy",  "apt": "python3-numpy",  "pacman": "python-numpy",  "dnf": "python3-numpy"  },
+    "boost":  { "apt": "libboost-all-dev", "pacman": "boost", "dnf": "boost-devel" },
+    "opencv": { "apt": "libopencv-dev",    "pacman": "opencv", "dnf": "opencv-devel" },
+    "sqlite": { "apt": "libsqlite3-dev",   "pacman": "sqlite", "dnf": "sqlite-devel" }
+  },
+  "installed": {
+    "python": [],
+    "cpp":    [],
+    "rust":   [],
+    "node":   [],
+    "dart":   []
+  }
+}
