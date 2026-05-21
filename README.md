@@ -1,6 +1,6 @@
 # LPM — Universal Package Manager Wrapper
 
-[![Lint & Test](https://github.com/YOUR_USERNAME/lpm/actions/workflows/lint.yml/badge.svg)](https://github.com/YOUR_USERNAME/lpm/actions)
+[![Lint & Test](https://github.com/Qwarwin4/Language-package-manager/actions/workflows/lint.yml/badge.svg)](https://github.com/Qwarwin4/Language-package-manager/actions)
 ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
 LPM is a unified CLI for installing packages across **Python, Rust, Node.js, Dart and C++** — both globally and locally inside a project.
@@ -142,6 +142,3 @@ lpm remove  boost --cpp
 
 MIT — see [LICENCE](LICENCE).
 ````
-
-**Topics:**
-`package-manager` `python` `rust` `nodejs` `dart` `cpp` `linux` `cli` `pip` `cargo` `npm`
