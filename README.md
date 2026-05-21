@@ -10,8 +10,8 @@ LPM is a unified CLI for installing packages across **Python, Rust, Node.js, Dar
 ## Installation
 
 ```bash
-git clone https://github.com/Qwarwin4/lpm.git
-cd lpm
+git clone https://github.com/Qwarwin4/Language-package-manager.git
+cd Language-package-manager
 chmod +x install.sh
 ./install.sh
 ```
