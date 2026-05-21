@@ -1,6 +1,6 @@
 # LPM — Universal Package Manager Wrapper
 
-[![Lint & Test](https://github.com/Qwarwin4/lpm/actions/workflows/lint.yml/badge.svg)](https://github.com/Qwarwin4/lpm/actions)
+[![Lint & Test](https://github.com/YOUR_USERNAME/lpm/actions/workflows/lint.yml/badge.svg)](https://github.com/YOUR_USERNAME/lpm/actions)
 ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
 LPM is a unified CLI for installing packages across **Python, Rust, Node.js, Dart and C++** — both globally and locally inside a project.
@@ -16,7 +16,7 @@ chmod +x install.sh
 ./install.sh
 ```
 
-`install.sh` automatically installs any missing runtimes (Rust via rustup, Node via NodeSource, Dart via the official apt repo) and drops the `lpm` command into `/usr/local/bin`.
+`install.sh` will ask whether to install any missing runtimes (Rust, Node.js, Dart) — each one is optional. After that it drops the `lpm` command into `/usr/local/bin`.
 
 ---
 
@@ -27,25 +27,27 @@ chmod +x uninstall.sh
 ./uninstall.sh
 ```
 
-Interactive prompts let you choose whether to remove each runtime as well.
+Removes LPM itself (`/opt/lpm` and the `lpm` symlink). Language runtimes are **not** touched.
 
 ---
 
 ## Usage
 
-### Global install (default)
+> **A language flag is always required** for `install` and `remove`. Without it lpm doesn't know which package manager to use.
+
+### Install globally
 
 | Command | Tool used |
 |---|---|
-| `lpm install <pkg> -- python` | pip |
+| `lpm install <pkg> --python` | pip |
 | `lpm install <pkg> --rust` | cargo install |
 | `lpm install <pkg> --node` | npm install -g |
 | `lpm install <pkg> --dart` | dart pub global activate |
 | `lpm install <pkg> --cpp` | apt / pacman / dnf |
 
-### Local install (`--local`)
+### Install locally (`--local`)
 
-Installs into the **current project directory** instead of globally.
+Installs into the **current project directory** instead of globally. Navigate to your project folder first, then run:
 
 | Command | What happens |
 |---|---|
@@ -55,20 +57,66 @@ Installs into the **current project directory** instead of globally.
 | `lpm install <pkg> --dart --local` | runs `dart pub add` (edits `pubspec.yaml`) |
 | `lpm install <pkg> --cpp --local` | creates `conanfile.txt`, runs `conan install` |
 
-### Remove
+### Remove globally
 
 ```bash
-lpm remove <pkg>               # global
-lpm remove <pkg> --local       # local project
+lpm remove <pkg> --python
 lpm remove <pkg> --rust
-lpm remove <pkg> --node --local
-# etc.
+lpm remove <pkg> --node
+lpm remove <pkg> --dart
+lpm remove <pkg> --cpp
 ```
 
-### List
+### Remove locally
+
+Navigate to the project folder first, then pass `--local` along with the language flag:
 
 ```bash
-lpm list
+lpm remove <pkg> --python --local
+lpm remove <pkg> --rust   --local
+lpm remove <pkg> --node   --local
+lpm remove <pkg> --dart   --local
+```
+
+### Other commands
+
+```bash
+lpm list        # show all packages tracked by lpm
+lpm updates     # check GitHub for a newer version
+lpm --version   # print current version
+```
+
+---
+
+## Examples
+
+```bash
+# Python
+lpm install requests --python
+lpm install requests --python --local   # into .venv in current directory
+lpm remove  requests --python
+lpm remove  requests --python --local
+
+# Rust
+lpm install tokio --rust
+lpm install tokio --rust --local        # cargo add into Cargo.toml
+lpm remove  tokio --rust
+
+# Node.js
+lpm install typescript --node
+lpm install typescript --node --local   # npm install into node_modules
+lpm remove  typescript --node
+lpm remove  typescript --node --local
+
+# Dart
+lpm install dart_style --dart
+lpm install dart_style --dart --local   # dart pub add into pubspec.yaml
+lpm remove  dart_style --dart
+
+# C++
+lpm install boost --cpp
+lpm install boost --cpp --local         # conan install into ./build
+lpm remove  boost --cpp
 ```
 
 ---
@@ -81,24 +129,6 @@ lpm list
 | Arch, Manjaro | pacman |
 | Fedora, CentOS, RHEL | dnf |
 
----
-
-## Project structure
-
-```
-lpm/
-├── main.py           # CLI entry point + all language handlers
-├── pypi_handler.py   # PyPI REST API client
-├── utils.py          # Coloured logging helpers
-├── packages.json     # Registry of installed packages + system mappings
-├── install.sh        # System-wide installer
-├── uninstall.sh      # Clean removal
-└── .github/
-    ├── workflows/lint.yml
-    └── ISSUE_TEMPLATE/
-```
-
----
 
 ## Contributing
 
@@ -111,12 +141,7 @@ lpm/
 ## License
 
 MIT — see [LICENCE](LICENCE).
-
----
-
-One-liner for the GitHub **Description** field:
-
-> A single CLI for pip, cargo, npm, dart pub and apt/pacman/dnf — stop remembering, start installing.
+````
 
 **Topics:**
 `package-manager` `python` `rust` `nodejs` `dart` `cpp` `linux` `cli` `pip` `cargo` `npm`
