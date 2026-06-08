@@ -7,7 +7,7 @@ import distro
 from pypi_handler import PyPIHandler
 from utils import log_info, log_success, log_error, log_warn, log_action, Colors
 
-VERSION = "1.2.0"
+VERSION = "1.1.0"
 
 class LPM:
     def __init__(self):
