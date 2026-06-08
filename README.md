@@ -10,8 +10,8 @@ LPM is a unified CLI for installing packages across **Python and C++** — both 
 ## Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/lpm.git
-cd lpm
+git clone https://github.com/Qwarwin4/Language-package-manager.git
+cd Language-package-manager
 chmod +x install.sh
 ./install.sh
 ```
@@ -107,7 +107,7 @@ lpm remove  boost --cpp
 ## Project structure
 
 ```
-lpm/
+Language-package-manager/
 ├── main.py           # CLI entry point + language handlers
 ├── pypi_handler.py   # PyPI REST API client
 ├── updater.py        # GitHub release checker
@@ -127,9 +127,3 @@ lpm/
 1. Fork → feature branch → PR
 2. `shellcheck install.sh uninstall.sh` must pass
 3. `pyflakes main.py pypi_handler.py utils.py` must pass
-
----
-
-## License
-
-MIT — see [LICENCE](LICENCE).
